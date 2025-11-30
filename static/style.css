@@ -1,0 +1,267 @@
+/* --- 變數定義 (方便換色) --- */
+
+:root {
+    --primary-color: #6a5acd;
+    --primary-hover: #5a4bbd;
+    --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
+    --text-color: #333;
+    --text-muted: #666;
+    --white: #ffffff;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --radius: 12px;
+}
+
+
+/* --- 全局重置 --- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* 關鍵：讓 padding 不會增加寬度 */
+}
+
+body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg-gradient);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    /* 防止手機版貼邊 */
+    color: var(--text-color);
+}
+
+
+/* --- 容器 --- */
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    /* 半透明白色 */
+    backdrop-filter: blur(12px);
+    /* 背景模糊 (毛玻璃關鍵) */
+    -webkit-backdrop-filter: blur(12px);
+    /* Safari 支援 */
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* 白色微邊框 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+
+/* --- 標題 --- */
+
+.container h1 {
+    margin: 0 0 2rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+
+/* --- 表單群組 --- */
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+
+/* 標籤 */
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+
+/* 讓這個區域變成橫向排列 */
+
+.form-group.options {
+    display: flex;
+    /* 啟用彈性盒模型 (橫向排列) */
+    gap: 10px;
+    /* 設定選單之間的間距 */
+    align-items: center;
+    /* 垂直置中 (預防高度不一) */
+}
+
+
+/* 讓裡面的下拉選單平分寬度 */
+
+.form-group.options div {
+    flex: 1;
+    /* 三個選單依比例平分空間 (1:1:1) */
+    width: auto;
+    /* 覆寫原本全域設定的 width: 100% */
+    min-width: 0;
+    /* 防止內容過長撐爆版面 */
+}
+
+
+/* 輸入框容器 (修正 Flex 佈局) */
+
+
+/* 如果你需要 Input 和 按鈕排在同一行，請加上 .input-group class */
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    /* 現代語法，設定元素間距 */
+    align-items: center;
+}
+
+
+/* --- 輸入框 & 下拉選單 --- */
+
+
+/* 擴展到所有 input 類型，不只是 text */
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    /* 邊框加粗一點點更有質感 */
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+
+/* Input Focus 狀態 */
+
+input:focus,
+select:focus {
+    border-color: var(--primary-color);
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(106, 90, 205, 0.15);
+    /* 更現代的擴散光暈 */
+}
+
+
+/* --- 按鈕 --- */
+
+button {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
+    /* Hover 時增加陰影 */
+}
+
+button:active {
+    transform: translateY(0);
+    /* 按下時回彈 */
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* 在 .input-group 內的樣式調整 */
+
+.input-group input {
+    flex: 1;
+    /* 自動撐滿 */
+}
+
+.input-group button {
+    flex-shrink: 0;
+}
+
+.curr-info {
+    position: absolute;
+    /* 絕對定位 */
+    bottom: 10px;
+    /* 距離底部 10px */
+    right: 15px;
+    /* 距離右邊 15px */
+    font-size: 0.75rem;
+    /* 字體縮小 (約 12px) */
+    color: #999;
+    /* 淺灰色，比較不搶眼 */
+    font-family: monospace;
+    /* [選用] 使用等寬字體，看起來比較像程式碼 */
+    opacity: 0.8;
+    /* 稍微透明 */
+    pointer-events: none;
+    /* [選用] 讓滑鼠穿透，避免擋到點擊 */
+}
+
+
+/* --- 特殊按鈕 --- */
+
+#download-btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+
+/* --- 結果區塊 --- */
+
+#result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f0f2f5;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color);
+    /* 左側強調線 */
+    font-size: 1rem;
+    color: var(--text-color);
+    text-align: left;
+    line-height: 1.6;
+    animation: fadeIn 0.5s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* 簡單的淡入動畫 */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

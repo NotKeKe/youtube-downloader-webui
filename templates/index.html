@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>YouTube Downloader</h1>
+
+        <div class="form-group">
+            <label for="url">YouTube url</label>
+            <input type="text" id="url" name="url" placeholder="Enter your YouTube URL">
+        </div>
+
+        <div class="form-group">
+            <label for="media_type">Download type</label>
+            <select id="media_type" name="media_type">
+                <option value="video and audio">Video and Audio</option>
+                <option value="video">Video</option>
+                <option value="audio">Audio</option>
+            </select>
+        </div>
+
+        <div class="form-group options">
+            <div class="resolution hidden">
+                <label for="resolution">Resolution</label>
+                <select id="resolution">
+                    <option value="best">best</option>
+                </select>
+            </div>
+
+            <div class="fps hidden">
+                <label for="fps">FPS</label>
+                <select id="fps">
+                    <option value="best">best</option>
+                </select>
+            </div>
+
+            <div class="abr hidden">
+                <label for="abr">Abr</label>
+                <select id="abr">
+                    <option value="best">best</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="download-btn" onclick="startDownload()">Start Download</button>
+
+        <div id="result" class="hidden"></div>
+
+        <span class="curr-info">Hello</span>
+    </div>
+
+    <script src="../static/index.js"></script>
+</body>
+
+</html>
